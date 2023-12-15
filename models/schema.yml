@@ -1,0 +1,21 @@
+version: 2
+
+# 6 tests 1 / dimension
+# 1 test custom
+# 1 test generic dbt
+sources:
+  - name: public
+    database: tp_data_quality
+    tables:
+      - name: state_county_mapping
+        description: "This table contains the mapping between state and county and the state code"
+        columns:
+          - name: statecode
+            tests:
+              - unique
+              - not_null
+          - name: statename
+            tests:
+              - unique
+              - not_null
+      # TODO: add tests for the air quality table

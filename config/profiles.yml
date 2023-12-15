@@ -1,0 +1,25 @@
+cours_dq:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: <YOUR_ACCOUNT>
+      user: <YOUR_USER>
+      password: <YOUR_PASSWORD>
+      role: <YOUR_ROLE>
+      database: TP_DATA_QUALITY
+      warehouse: DATA_QUALITY_DW
+      schema: public
+      threads: 1
+elementary:
+  outputs:
+    default:
+      type: snowflake
+      account: <YOUR_ACCOUNT>
+      user: <YOUR_USER>
+      password: <YOUR_PASSWORD>
+      role: <YOUR_ROLE>
+      database: TP_DATA_QUALITY
+      warehouse: DATA_QUALITY_DW
+      schema: public_elementary
+      threads: 1

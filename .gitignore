@@ -1,0 +1,16 @@
+# general
+*.DS_Store
+.vscode/
+.env
+private/
+
+# python
+.python-version
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# elementary
+edr_target/
