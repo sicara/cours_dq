@@ -1,8 +1,5 @@
 version: 2
 
-# 6 tests 1 / dimension
-# 1 test custom
-# 1 test generic dbt
 sources:
   - name: public
     database: tp_data_quality
@@ -12,10 +9,25 @@ sources:
         columns:
           - name: statecode
             tests:
-              - unique
               - not_null
+              - unique
           - name: statename
             tests:
-              - unique
               - not_null
+              - unique
       # TODO: add tests for the air quality table
+      - name: air_quality
+        description: "This table contains air quality measurements."
+        columns:
+          - name: latitude
+            # ex 1 : test that the latitude is not null
+            # ex 2 :  test that the latitude is between -90 and 90
+
+          - name: longitude
+            # ex 1 : test that the latitude is not null
+            # ex 2 : test that the latitude is between -180 and 180
+
+          - name: dateoflastchange
+            # ex 3 : test that the data is fresh (raise a warning if it is less than 1 month old, raise an error if it is less than 1 year old)
+# ex 4 : test that the data is coherent between state_county_mapping and air_quality for the following columns:
+# statecode, statename, countycode, countyname
