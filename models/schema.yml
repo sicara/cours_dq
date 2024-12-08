@@ -1,33 +1,43 @@
 version: 2
 
 sources:
-  - name: public
-    database: tp_data_quality
+  - name: birth_data
     tables:
-      - name: state_county_mapping
-        description: "This table contains the mapping between state and county and the state code"
+      - name: birth_data_2021
+        config:
+          external_location: "read_csv('data/donnees_naissances_2021.csv')"
+        description: "Official French birth data for the year 2021"
         columns:
-          - name: statecode
-            tests:
+          - name: ANAIS
+            data_tests:
               - not_null
-              - unique
-          - name: statename
-            tests:
-              - not_null
-              - unique
-      # TODO: add tests for the air quality table
-      - name: air_quality
-        description: "This table contains air quality measurements."
-        columns:
-          - name: latitude
-            # ex 1 : test that the latitude is not null
-            # ex 2 :  test that the latitude is between -90 and 90
+  # - name: public
+  #   database: tp_data_quality
+  #   tables:
+  #     - name: state_county_mapping
+  #       description: "This table contains the mapping between state and county and the state code"
+  #       columns:
+  #         - name: statecode
+  #           tests:
+  #             - not_null
+  #             - unique
+  #         - name: statename
+  #           tests:
+  #             - not_null
+  #             - unique
+  #     # TODO: add tests for the air quality table
+  #     - name: air_quality
+  #       description: "This table contains air quality measurements."
+  #       columns:
+  #         - name: latitude
+  #           # ex 1 : test that the latitude is not null
+  #           # ex 2 :  test that the latitude is between -90 and 90
 
-          - name: longitude
-            # ex 1 : test that the latitude is not null
-            # ex 2 : test that the latitude is between -180 and 180
+  #         - name: longitude
+  #           # ex 1 : test that the latitude is not null
+  #           # ex 2 : test that the latitude is between -180 and 180
 
-          - name: dateoflastchange
+  #         - name: dateoflastchange
             # ex 3 : test that the data is fresh (raise a warning if it is less than 1 month old, raise an error if it is less than 1 year old)
 # ex 4 : test that the data is coherent between state_county_mapping and air_quality for the following columns:
 # statecode, statename, countycode, countyname
