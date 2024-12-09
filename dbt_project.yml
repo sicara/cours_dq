@@ -24,3 +24,4 @@ clean-targets: # directories to be removed by `dbt clean`
 
 data_tests:
   +store_failures: true
+  +schema: null

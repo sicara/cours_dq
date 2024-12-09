@@ -5,7 +5,8 @@ sources:
     tables:
       - name: birth_data_2021
         config:
-          external_location: "read_csv('data/donnees_naissances_2021.csv')"
+          external_location: "read_csv('data/donnees_naissances_2021.csv', types={'DEPDOM': 'VARCHAR'})"
+          formatter: oldstyle
         description: "Official French birth data for the year 2021"
         columns:
           - name: ANAIS
