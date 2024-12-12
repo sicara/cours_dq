@@ -25,6 +25,9 @@ sources:
         columns:
           - name: ID
             description: "Identifiant unique"
+            data_tests:
+              - not_null
+              - unique
           - name: ANAIS
             description: "Année de naissance de l'enfant"
             data_tests:
@@ -33,14 +36,32 @@ sources:
             description: "Conditions de l'accouchement"
           - name: AGEMERE
             description: "Age de la mère dans l'année de naissance de l'enfant"
+            data_tests:
+              - value_in_range:
+                  min_value: 17
+                  max_value: 47
           - name: AGEPERE
             description: "Age du père dans l'année de naissance de l'enfant"
+            data_tests:
+              - value_in_range:
+                  min_value: 17
+                  max_value: 47
           - name: AGEXACTM
             description: "Age exact de la mère à la naissance de l'enfant"
+            data_tests:
+              - value_in_range:
+                  min_value: 17
+                  max_value: 47
           - name: AGEXACTP
             description: "Age exact du père à la naissance de l'enfant"
+            data_tests:
+              - value_in_range:
+                  min_value: 17
+                  max_value: 47
           - name: AMAR
             description: "Année de mariage des parents"
+            data_tests:
+              - is_integer
           - name: ARECC
             description: "Année de reconnaissance conjointe des parents"
           - name: ARECM
@@ -49,6 +70,10 @@ sources:
             description: "Année de reconnaissance du père"
           - name: DEPDOM
             description: "Département de domicile de la mère"
+            data_tests:
+              - relationships:
+                  to: ref('departements')
+                  field: CODE
           - name: DEPNAIS
             description: "Département de naissance"
           - name: DMARNAIS
@@ -91,3 +116,6 @@ sources:
             description: "Tranche de commune du lieu de domicile de la mère"
           - name: TUDOM
             description: "Tranche d'unité urbaine 2017 du lieu de domicile de la mère"
+
+          - name: DEPDOM
+            description: "Department of mother's residence"
