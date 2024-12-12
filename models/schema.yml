@@ -23,18 +23,46 @@ sources:
           formatter: oldstyle
         description: "Official French birth data for the year 2021"
         columns:
+          - name: ID
+            description: "Unique line identifier"
+            data_tests:
+              - not_null
+              - unique
           - name: ANAIS
             description: "Birth year"
             data_tests:
               - not_null
-          # TODO: add tests for other columns of the table
-
-          # ex 1: add ID uniqueness test
-
-          # ex 2: add range tests for the age columns (see data dictionary for accepted values)
-
-          # ex 3: add data type tests for the year columns 
-          
-          # ex 4: verify that all departments in DEPDOM and DEPNAIS are in the departements table
-
-# Bonus: based on the results of the tests, create a new model containing only correct data and run the same tests against it (they should all pass)
+          - name: AGEMERE
+            description: "Mother's age"
+            data_tests:
+              - value_in_range:
+                  min_value: 17
+                  max_value: 47
+          - name: AGEPERE
+            description: "Father's age"
+            data_tests:
+              - value_in_range:
+                  min_value: 17
+                  max_value: 47
+          - name: AGEXACTM
+            description: "Exact mother's age at child birth"
+            data_tests:
+              - value_in_range:
+                  min_value: 17
+                  max_value: 47
+          - name: AGEXACTP
+            description: "Exact father's age at child birth"
+            data_tests:
+              - value_in_range:
+                  min_value: 17
+                  max_value: 47
+          - name: AMAR
+            description: "Parent's mariage year"
+            data_tests:
+              - is_integer
+          - name: DEPDOM
+            description: "Department of mother's residence"
+            data_tests:
+              - relationships:
+                  to: ref('departements')
+                  field: CODE
