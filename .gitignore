@@ -11,6 +11,3 @@ private/
 target/
 dbt_packages/
 logs/
-
-# elementary
-edr_target/
