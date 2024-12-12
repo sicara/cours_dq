@@ -3,6 +3,20 @@ version: 2
 sources:
   - name: birth_data
     tables:
+      - name: departements
+        config:
+          external_location: "read_csv('data/departements.csv')"
+          formatter: oldstyle
+        description: "Reference table for departments"
+        columns:
+          - name: CODE
+            description: "Department code (ex. 22, 977...)"
+            data_tests:
+              - unique
+          - name: NOM
+            description: "Department name (ex. Côtes-d'Armor, Saint-Barthélemy...)"
+            data_tests:
+              - not_null
       - name: birth_data_2021
         config:
           external_location: "read_csv('data/donnees_naissances_2021.csv', types={'DEPDOM': 'VARCHAR'})"
@@ -10,35 +24,15 @@ sources:
         description: "Official French birth data for the year 2021"
         columns:
           - name: ANAIS
+            description: "Birth year"
             data_tests:
               - not_null
-  # - name: public
-  #   database: tp_data_quality
-  #   tables:
-  #     - name: state_county_mapping
-  #       description: "This table contains the mapping between state and county and the state code"
-  #       columns:
-  #         - name: statecode
-  #           tests:
-  #             - not_null
-  #             - unique
-  #         - name: statename
-  #           tests:
-  #             - not_null
-  #             - unique
-  #     # TODO: add tests for the air quality table
-  #     - name: air_quality
-  #       description: "This table contains air quality measurements."
-  #       columns:
-  #         - name: latitude
-  #           # ex 1 : test that the latitude is not null
-  #           # ex 2 :  test that the latitude is between -90 and 90
+          # TODO: add tests for other columns of the table
 
-  #         - name: longitude
-  #           # ex 1 : test that the latitude is not null
-  #           # ex 2 : test that the latitude is between -180 and 180
+          # ex 1: add range tests for the age columns (see data dictionary for accepted values)
 
-  #         - name: dateoflastchange
-            # ex 3 : test that the data is fresh (raise a warning if it is less than 1 month old, raise an error if it is less than 1 year old)
-# ex 4 : test that the data is coherent between state_county_mapping and air_quality for the following columns:
-# statecode, statename, countycode, countyname
+          # ex 2: add data type tests for the year columns 
+          
+          # ex 3: verify that all departments in DEPDOM and DEPNAIS are in the departements table
+
+# Bonus: based on the results of the tests, create a new model containing only correct data and run the same tests against it (they should all pass)
