@@ -29,10 +29,12 @@ sources:
               - not_null
           # TODO: add tests for other columns of the table
 
-          # ex 1: add range tests for the age columns (see data dictionary for accepted values)
+          # ex 1: add ID uniqueness test
 
-          # ex 2: add data type tests for the year columns 
+          # ex 2: add range tests for the age columns (see data dictionary for accepted values)
+
+          # ex 3: add data type tests for the year columns 
           
-          # ex 3: verify that all departments in DEPDOM and DEPNAIS are in the departements table
+          # ex 4: verify that all departments in DEPDOM and DEPNAIS are in the departements table
 
 # Bonus: based on the results of the tests, create a new model containing only correct data and run the same tests against it (they should all pass)
