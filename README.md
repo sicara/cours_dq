@@ -127,6 +127,16 @@ You can explore the data by :
 ### Bonus
 Based on the results of the tests, create a new model `donnees_naissances_2021_corrected.sql` containing only correct data and run the same tests against it (they should all pass)
 
+## Correction
+
+In this correction, a data exploration script is available: `uv run python analyses/explore_database.py`
+
+Here is the list of tests performed:
+- Verification of the uniqueness of the `ID` field
+- Verification that the `ANAIS` and `ID` fields are not null
+- Verification that the `AMAR` field is indeed an integer
+- Verification of the validity of the values taken by `AGEMERE`, `AGEPERE`, `AGEXACTM`, `AGEXACTP`
+- Verification of the validity of the `DEPDOM` foreign key
 
 ## Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
