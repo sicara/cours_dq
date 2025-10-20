@@ -85,10 +85,15 @@ uv run dbt test --profiles-dir config
 
 
 ## Project Overview
-This project analyzes French birth data from 2021, focusing on data quality practices and techniques taught in the Centrale Supélec data quality course.
-### Exercises
+This project analyzes French birth data from 2021, focusing on data quality practices and techniques taught in the CentraleSupélec data quality course.
 
-#### Exercise 1 - Add uniqueness and nullable tests
+You can explore the data by :
+- looking at the data sample : `sample_data/extrait_donnees_naissances_2021.csv`
+- adapting the Python script querying the database : `uv run python analyses/explore_database.py`
+
+## Exercises
+
+### Exercise 1 - Add uniqueness and nullable tests
 
 **Task:** Add data quality tests to ensure data integrity
 - Add a `unique` test for the `ID` column in the `birth_data_2021` source to ensure each record has a unique identifier
@@ -96,13 +101,13 @@ This project analyzes French birth data from 2021, focusing on data quality prac
 
 **Implementation:** Add these tests to the `models/schema.yml` file under the appropriate column definitions.
 
-#### Exercise 2 - Add value range tests
+### Exercise 2 - Add value range tests
 
 **Task:** Add range validation tests for age columns using the `dbt_utils.accepted_range` test. See data dictionnary for accepted values.
 
 **Implementation:** Use the `dbt_utils.accepted_range` test with `min_value: <MIN>` and `max_value: <MAX>` for each age column.
 
-#### Exercise 3 - Add data type tests
+### Exercise 3 - Add data type tests
 
 **Task:** Add tests to validate year columns (e.g., `ANAIS`, `AMAR`, `ARECC`, `ARECM`, `ARECP`) data type
 
@@ -110,13 +115,13 @@ This project analyzes French birth data from 2021, focusing on data quality prac
 
 **Bonus:** Validate year values using `dbt_utils.accepted_range` with appropriate min/max for year columns
 
-#### Exercise 4 - Add relationship test
+### Exercise 4 - Add relationship test
 
 **Task:** Verify referential integrity between birth data and department reference table
 
 **Implementation:** Use the `relationships` test to ensure foreign key constraints are maintained between the birth data and department reference data.
 
-#### Bonus
+### Bonus
 based on the results of the tests, create a new model containing only correct data and run the same tests against it (they should all pass)
 
 
