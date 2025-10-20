@@ -23,18 +23,71 @@ sources:
           formatter: oldstyle
         description: "Official French birth data for the year 2021"
         columns:
+          - name: ID
+            description: "Identifiant unique"
           - name: ANAIS
-            description: "Birth year"
+            description: "Année de naissance de l'enfant"
             data_tests:
               - not_null
-          # TODO: add tests for other columns of the table
-
-          # ex 1: add ID uniqueness test
-
-          # ex 2: add range tests for the age columns (see data dictionary for accepted values)
-
-          # ex 3: add data type tests for the year columns 
-          
-          # ex 4: verify that all departments in DEPDOM and DEPNAIS are in the departements table
-
-# Bonus: based on the results of the tests, create a new model containing only correct data and run the same tests against it (they should all pass)
+          - name: ACCOUCHR
+            description: "Conditions de l'accouchement"
+          - name: AGEMERE
+            description: "Age de la mère dans l'année de naissance de l'enfant"
+          - name: AGEPERE
+            description: "Age du père dans l'année de naissance de l'enfant"
+          - name: AGEXACTM
+            description: "Age exact de la mère à la naissance de l'enfant"
+          - name: AGEXACTP
+            description: "Age exact du père à la naissance de l'enfant"
+          - name: AMAR
+            description: "Année de mariage des parents"
+          - name: ARECC
+            description: "Année de reconnaissance conjointe des parents"
+          - name: ARECM
+            description: "Année de reconnaissance de la mère"
+          - name: ARECP
+            description: "Année de reconnaissance du père"
+          - name: DEPDOM
+            description: "Département de domicile de la mère"
+          - name: DEPNAIS
+            description: "Département de naissance"
+          - name: DMARNAIS
+            description: "Comparaison des dates anniversaires de mariage des parents et de naissance de l'enfant"
+          - name: DURECEVP
+            description: "Durée écoulée depuis l'événement précédent"
+          - name: INDLNM
+            description: "Indicateur du lieu de naissance de la mère"
+          - name: INDLNP
+            description: "Indicateur du lieu de naissance du père"
+          - name: INDNATM
+            description: "Indicateur de nationalité de la mère"
+          - name: INDNATP
+            description: "Indicateur de nationalité du père"
+          - name: JRECC
+            description: "Jour de reconnaissance conjointe des parents"
+          - name: JRECM
+            description: "Jour de reconnaissance de la mère"
+          - name: JRECP
+            description: "Jour de reconnaissance du père"
+          - name: MNAIS
+            description: "Mois de naissance de l'enfant"
+          - name: MRECC
+            description: "Mois de reconnaissance conjointe des parents"
+          - name: MRECM
+            description: "Mois de reconnaissance de la mère"
+          - name: MRECP
+            description: "Mois de reconnaissance du père"
+          - name: NBENF
+            description: "Nombre d'enfants issus de l'accouchement"
+          - name: ORIGINOM
+            description: "Origine du nom de l'enfant"
+          - name: SEXE
+            description: "Sexe de l'enfant"
+          - name: SITUATMR
+            description: "Situation professionnelle de la mère"
+          - name: SITUATPR
+            description: "Situation professionnelle du père"
+          - name: TUCOM
+            description: "Tranche de commune du lieu de domicile de la mère"
+          - name: TUDOM
+            description: "Tranche d'unité urbaine 2017 du lieu de domicile de la mère"

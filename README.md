@@ -54,6 +54,9 @@ This project uses [uv](https://docs.astral.sh/uv/) for Python dependency managem
    ```
 
 ### Database Configuration
+Create the directory with
+`mkdir database`
+
 This project uses DuckDB as the data warehouse and the connection configuration is stored in `config/profiles.yml`. The database file will be created automatically in the `database/` directory when you first run dbt.
 
 ## Usage
@@ -62,6 +65,13 @@ This project uses DuckDB as the data warehouse and the connection configuration 
 Export the profiles directory configuration to avoid specifying it in every command:
 ```shell
 export DBT_PROFILES_DIR=config
+```
+
+### Alternative Usage (with explicit profiles directory)
+If you prefer not to set the environment variable, you can specify the profiles directory in each command:
+```shell
+uv run dbt run --profiles-dir config
+uv run dbt test --profiles-dir config
 ```
 
 ### Common dbt Commands
@@ -73,16 +83,47 @@ export DBT_PROFILES_DIR=config
 - **Generate documentation**: `uv run dbt docs generate` - Creates project documentation
 - **Serve documentation**: `uv run dbt docs serve` - Serves documentation on a local web server
 
-### Alternative Usage (with explicit profiles directory)
-If you prefer not to set the environment variable, you can specify the profiles directory in each command:
-```shell
-uv run dbt run --profiles-dir config
-uv run dbt test --profiles-dir config
-```
-
 
 ## Project Overview
-This project analyzes French birth data from 2021, focusing on data quality practices and techniques taught in the Centrale Supélec data quality course.
+This project analyzes French birth data from 2021, focusing on data quality practices and techniques taught in the CentraleSupélec data quality course.
+
+You can explore the data by :
+- looking at the data sample : `sample_data/extrait_donnees_naissances_2021.csv`
+- adapting the Python script querying the database : `uv run python analyses/explore_database.py`
+
+## Exercises
+
+### Exercise 1 - Add uniqueness and nullable tests
+
+**Task:** Add data quality tests to ensure data integrity
+- Add a `unique` test for the `ID` column in the `birth_data_2021` source to ensure each record has a unique identifier
+- Add `not_null` tests for critical columns that should never be empty (e.g., `ID`, `SEXE`, `MNAIS`)
+
+**Implementation:** Add these tests to the `models/schema.yml` file under the appropriate column definitions.
+
+### Exercise 2 - Add value range tests
+
+**Task:** Add range validation tests for age columns using the `dbt_utils.accepted_range` test. See data dictionnary for accepted values.
+
+**Implementation:** Use the `dbt_utils.accepted_range` test with `min_value: <MIN>` and `max_value: <MAX>` for each age column.
+
+### Exercise 3 - Add data type tests
+
+**Task:** Add tests to validate year columns (e.g., `ANAIS`, `AMAR`, `ARECC`, `ARECM`, `ARECP`) data type
+
+**Implementation:** Use the appropriate data type test for a year column
+
+**Bonus:** Validate year values using `dbt_utils.accepted_range` with appropriate min/max for year columns
+
+### Exercise 4 - Add relationship test
+
+**Task:** Verify referential integrity between birth data and department reference table
+
+**Implementation:** Use the `relationships` test to ensure foreign key constraints are maintained between the birth data and department reference data.
+
+### Bonus
+based on the results of the tests, create a new model containing only correct data and run the same tests against it (they should all pass)
+
 
 ## Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
