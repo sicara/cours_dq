@@ -1,7 +1,4 @@
-{{
-  config(
-    materialized = "table",
-  )
-}}
+{{ config(materialized = "table",)}}
 
-SELECT * FROM {{ source('birth_data', 'birth_data_2021') }}
+SELECT * 
+FROM {{ source('birth_data', 'birth_data_2021') }}

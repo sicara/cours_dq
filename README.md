@@ -54,10 +54,13 @@ This project uses [uv](https://docs.astral.sh/uv/) for Python dependency managem
    ```
 
 ### Database Configuration
-Create the directory with
-`mkdir database`
+Create the database directory and output directory (CSV exports of created tables) with: 
+```shell
+mkdir database
+mkdir output_exports
+```
 
-This project uses DuckDB as the data warehouse and the connection configuration is stored in `config/profiles.yml`. The database file will be created automatically in the `database/` directory when you first run dbt.
+This project uses DuckDB as the data warehouse and the connection configuration is stored in `config/profiles.yml`. The database file will be created automatically in the `database/` directory when you first run dbt. The output created when running a DBT model will be exported as a CSV file in `output_exports`.
 
 ## Usage
 
@@ -67,7 +70,7 @@ Export the profiles directory configuration to avoid specifying it in every comm
 export DBT_PROFILES_DIR=config
 ```
 
-### Alternative Usage (with explicit profiles directory)
+#### Alternative Usage (with explicit profiles directory)
 If you prefer not to set the environment variable, you can specify the profiles directory in each command:
 ```shell
 uv run dbt run --profiles-dir config
@@ -76,10 +79,10 @@ uv run dbt test --profiles-dir config
 
 ### Common dbt Commands
 
+- **Debug configuration**: `uv run dbt debug` - Validates your dbt configuration and database connection
+- **Compile models**: `uv run dbt compile` - Compiles SQL templates without executing them
 - **Run all models**: `uv run dbt run` - Executes all SQL models and creates/updates tables and views in the database
 - **Test data quality**: `uv run dbt test` - Runs all defined tests to validate data quality and model assumptions
-- **Compile models**: `uv run dbt compile` - Compiles SQL templates without executing them
-- **Debug configuration**: `uv run dbt debug` - Validates your dbt configuration and database connection
 - **Generate documentation**: `uv run dbt docs generate` - Creates project documentation
 - **Serve documentation**: `uv run dbt docs serve` - Serves documentation on a local web server
 
@@ -122,7 +125,7 @@ You can explore the data by :
 **Implementation:** Use the `relationships` test to ensure foreign key constraints are maintained between the birth data and department reference data.
 
 ### Bonus
-based on the results of the tests, create a new model containing only correct data and run the same tests against it (they should all pass)
+Based on the results of the tests, create a new model `donnees_naissances_2021_corrected.sql` containing only correct data and run the same tests against it (they should all pass)
 
 
 ## Resources:
