@@ -116,6 +116,3 @@ sources:
             description: "Tranche de commune du lieu de domicile de la mère"
           - name: TUDOM
             description: "Tranche d'unité urbaine 2017 du lieu de domicile de la mère"
-
-          - name: DEPDOM
-            description: "Department of mother's residence"
