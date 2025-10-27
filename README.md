@@ -129,7 +129,19 @@ Based on the results of the tests, create a new model `donnees_naissances_2021_c
 
 ## Correction
 
+### Preliminary exploration of data
+List of data errors introduced in `sample_data/extrait_donnees_naissances_2021.csv`:
+- ID=2 - MNAIS=11→15 : month code is invalid (value 15 is not authorized)
+- ID=4 - MNAIS=08→null : month is missing
+- ID=5 - DEPNAIS=95→999 : department code is invalid (department 999 does not exist)
+- ID=7 - duplicated line with ID=7
+- ID=14/15 - ANAIS=2021→2019/2020: year of birth is invalid (2021 data)
+- ID=19 - AGEMERE=28→127: age is invalid (outlier value)
+- ID=23 - AGEMERE=36→41: age is invalid (not coherent with AGEXACTM=34)
+
 In this correction, a data exploration script is available: `uv run python analyses/explore_database.py`
+
+### Exercices correction - Tests added
 
 Here is the list of tests performed:
 - Verification of the uniqueness of the `ID` field
